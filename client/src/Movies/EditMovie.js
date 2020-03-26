@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const EditMovie = (props) => {
-  console.log(props);
+  console.log("Edit Movie Props.UpdateMovie: ", props.updateMovie);
   const [movie, setMovie] = useState(props.movie);
+  const { push } = useHistory();
 
   useEffect(() => {
     setMovie(props.movie);
@@ -23,8 +25,7 @@ const EditMovie = (props) => {
       .then(res => {
         console.log(res);
         props.updateMovie(res.data);
-        // props.getMovies();
-        props.history.push('/');
+        push('/');
       })
       .catch(err => console.log(err.response));
   };
